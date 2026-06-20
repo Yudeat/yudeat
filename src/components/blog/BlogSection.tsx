@@ -86,6 +86,7 @@ export function BlogSection() {
         viewBox="0 0 1440 80"
         preserveAspectRatio="none"
         aria-hidden="true"
+        focusable="false"
       >
         <path className="fill-brutal-bg" d={buildBlogBottomPath()} />
       </svg>

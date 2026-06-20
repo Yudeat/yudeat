@@ -1030,7 +1030,6 @@ html.scroll-locked body {
   position: absolute;
   width: 58%;
   aspect-ratio: 4 / 5;
-  will-change: transform;
 }
 
 .passion-intro-photo-a {
@@ -1391,13 +1390,9 @@ html.scroll-locked body {
   isolation: isolate;
 }
 
-[data-scroll-story] {
-  will-change: transform, opacity;
-}
-
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: no-preference) {
   [data-scroll-story] {
-    will-change: auto;
+    will-change: transform, opacity;
   }
 }
 

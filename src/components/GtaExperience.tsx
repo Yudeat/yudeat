@@ -30,12 +30,10 @@ export function GtaExperience() {
     if (!showContent) return;
 
     const refresh = () => scheduleScrollTriggerRefresh();
-    const frame = requestAnimationFrame(refresh);
     const timer = window.setTimeout(refresh, 350);
     const lateTimer = window.setTimeout(refresh, 900);
 
     return () => {
-      cancelAnimationFrame(frame);
       window.clearTimeout(timer);
       window.clearTimeout(lateTimer);
     };

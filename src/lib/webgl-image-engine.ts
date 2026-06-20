@@ -1,4 +1,14 @@
-import * as THREE from "three";
+import {
+  WebGLRenderer,
+  Scene,
+  OrthographicCamera,
+  Mesh,
+  PlaneGeometry,
+  ShaderMaterial,
+  Texture,
+  LinearFilter,
+  SRGBColorSpace,
+} from "three";
 import {
   imageDistortFragmentShader,
   imageDistortVertexShader,
@@ -11,8 +21,8 @@ const SELECTOR = "[data-webgl-image]";
 type ImagePlane = {
   root: HTMLElement;
   image: HTMLImageElement;
-  mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>;
-  texture: THREE.Texture;
+  mesh: Mesh<PlaneGeometry, ShaderMaterial>;
+  texture: Texture;
 };
 
 export type WebGLImageEngineOptions = {
@@ -27,9 +37,9 @@ function resolveImageElement(root: HTMLElement): HTMLImageElement | null {
 }
 
 export class WebGLImageEngine {
-  private readonly renderer: THREE.WebGLRenderer;
-  private readonly scene: THREE.Scene;
-  private readonly camera: THREE.OrthographicCamera;
+  private readonly renderer: WebGLRenderer;
+  private readonly scene: Scene;
+  private readonly camera: OrthographicCamera;
   private readonly planes = new Map<HTMLElement, ImagePlane>();
   private readonly amplitude: number;
   private enabled: boolean;
@@ -42,7 +52,7 @@ export class WebGLImageEngine {
     this.amplitude = amplitude;
     this.enabled = enabled;
 
-    this.renderer = new THREE.WebGLRenderer({
+    this.renderer = new WebGLRenderer({
       canvas,
       alpha: true,
       antialias: true,
@@ -51,8 +61,8 @@ export class WebGLImageEngine {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.setClearColor(0x000000, 0);
 
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.OrthographicCamera(0, 0, 0, 0, -100, 100);
+    this.scene = new Scene();
+    this.camera = new OrthographicCamera(0, 0, 0, 0, -100, 100);
     this.camera.position.z = 10;
 
     this.resize();
@@ -96,10 +106,10 @@ export class WebGLImageEngine {
         continue;
       }
 
-      const texture = new THREE.Texture(image);
-      texture.colorSpace = THREE.SRGBColorSpace;
-      texture.minFilter = THREE.LinearFilter;
-      texture.magFilter = THREE.LinearFilter;
+      const texture = new Texture(image);
+      texture.colorSpace = SRGBColorSpace;
+      texture.minFilter = LinearFilter;
+      texture.magFilter = LinearFilter;
 
       const onImageReady = () => {
         texture.needsUpdate = true;
@@ -112,7 +122,7 @@ export class WebGLImageEngine {
         image.addEventListener("load", onImageReady, { once: true });
       }
 
-      const material = new THREE.ShaderMaterial({
+      const material = new ShaderMaterial({
         uniforms: {
           uTexture: { value: texture },
           uTime: { value: 0 },
@@ -126,8 +136,8 @@ export class WebGLImageEngine {
         depthWrite: false,
       });
 
-      const geometry = new THREE.PlaneGeometry(1, 1, PLANE_SEGMENTS, PLANE_SEGMENTS);
-      const mesh = new THREE.Mesh(geometry, material);
+      const geometry = new PlaneGeometry(1, 1, PLANE_SEGMENTS, PLANE_SEGMENTS);
+      const mesh = new Mesh(geometry, material);
       this.scene.add(mesh);
 
       this.planes.set(root, { root, image, mesh, texture });

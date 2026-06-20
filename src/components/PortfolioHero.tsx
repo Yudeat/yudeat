@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { HeroTypewriterTitle } from "@/components/portfolio/HeroTypewriterTitle";
@@ -99,13 +100,15 @@ export function PortfolioHero() {
                     ))}
                   </div>
 
-                  <div className="mt-5 aspect-[16/7] w-full overflow-hidden border border-brutal-border md:mt-6">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                  <div className="relative mt-5 aspect-[16/7] w-full overflow-hidden border border-brutal-border md:mt-6">
+                    <Image
                       src="/hero.png"
                       alt="Yudeat in front of a lake and mountains"
                       data-webgl-image
-                      className="hero-image h-full w-full object-cover object-[center_68%]"
+                      fill
+                      priority
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 800px"
+                      className="hero-image object-cover object-[center_68%]"
                     />
                   </div>
 
