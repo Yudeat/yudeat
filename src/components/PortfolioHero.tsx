@@ -153,14 +153,14 @@ export function PortfolioHero() {
                     </h2>
 
                     <div className="flex flex-col gap-3 font-mono text-[10px] uppercase tracking-widest text-brutal-fg/60 lg:items-end">
-                      <span>2024 Portfolio</span>
-                      <button
-                        type="button"
+                      <span>2025 Portfolio</span>
+                      <a
+                        href="#work"
                         className="inline-flex w-fit items-center gap-2 rounded-full border border-brutal-border px-4 py-2 text-brutal-fg transition-colors hover:border-brutal-fg hover:bg-brutal-fg hover:text-brutal-bg"
                       >
                         Selected work
                         <span aria-hidden>↘</span>
-                      </button>
+                      </a>
                       <span className="text-brutal-fg/45">
                         <LiveClock />
                       </span>
