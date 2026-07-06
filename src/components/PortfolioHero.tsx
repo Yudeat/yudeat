@@ -176,8 +176,8 @@ export function PortfolioHero() {
             >
               <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                 <span>Design &amp; code by Yudeat</span>
-                <button
-                  type="button"
+                <a
+                  href="/passion"
                   className="flex items-center gap-2 transition-colors hover:text-brutal-fg"
                 >
                   Climb
@@ -185,7 +185,7 @@ export function PortfolioHero() {
                     className="h-1.5 w-1.5 rounded-full bg-brutal-fg"
                     aria-hidden
                   />
-                </button>
+                </a>
               </div>
               <a
                 href="#contact"
