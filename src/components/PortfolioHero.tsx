@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { HeroTypewriterTitle } from "@/components/portfolio/HeroTypewriterTitle";
@@ -176,7 +177,7 @@ export function PortfolioHero() {
             >
               <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                 <span>Design &amp; code by Yudeat</span>
-                <a
+                <Link
                   href="/passion"
                   className="flex items-center gap-2 transition-colors hover:text-brutal-fg"
                 >
@@ -185,7 +186,7 @@ export function PortfolioHero() {
                     className="h-1.5 w-1.5 rounded-full bg-brutal-fg"
                     aria-hidden
                   />
-                </a>
+                </Link>
               </div>
               <a
                 href="#contact"

@@ -37,6 +37,7 @@ export function BlogSection() {
             (Blog)
           </p>
           <h2
+          
             id="blog-heading"
             data-blog-header
             className="mt-5 font-sans text-[clamp(2rem,5.5vw,3.5rem)] font-semibold uppercase leading-[1.02] tracking-[-0.04em] text-blog-accent"
