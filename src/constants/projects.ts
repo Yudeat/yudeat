@@ -13,6 +13,30 @@ export type Project = {
 /** Update liveUrl / githubUrl with your deployed sites and repos. */
 export const PROJECTS: Project[] = [
   {
+    id: "6",
+    title: "Naulomart",
+    description:
+      "Multi-category e-commerce marketplace for Nepal — seller onboarding, delivery tracking, and category-driven storefront.",
+    image: "/project6.png",
+    imageAlt: "Naulomart — Exclusive Man's Collection hero banner",
+    tags: ["Next.js", "E-commerce"],
+    liveUrl: "https://naulomart.com",
+    githubUrl: "https://github.com/yudeat",
+    date: "August 3, 2026",
+  },
+  {
+    id: "5",
+    title: "Playmates",
+    description:
+      "Sports social app for Nepal — find venues, book instantly, and match with teammates nearby across every sport.",
+    image: "/project5.png",
+    imageAlt: "Playmates — Connect, Compete, Play hero section",
+    tags: ["Next.js", "Mobile"],
+    liveUrl: "https://playmates.live",
+    githubUrl: "https://github.com/yudeat",
+    date: "August 3, 2026",
+  },
+  {
     id: "2",
     title: "Kachu Kart",
     description:
