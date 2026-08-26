@@ -2,6 +2,7 @@ export type TestimonialPosition =
   | "top-left"
   | "top-center"
   | "top-right"
+  | "mid-left"
   | "bottom-left"
   | "bottom-right";
 
@@ -72,12 +73,26 @@ export const TESTIMONIALS: Testimonial[] = [
     tiltClass: "lg:-rotate-[2deg]",
     floatDelay: "0.9s",
   },
+  {
+    id: "5",
+    quote:
+      "Good — and honestly among the best. We recommend this developer without hesitation.",
+    name: "Playmates",
+    detail: "playmates.live",
+    initials: "PL",
+    position: "mid-left",
+    avatarClass:
+      "bg-gradient-to-br from-violet-100 via-violet-50 to-fuchsia-50 text-violet-900/80 ring-violet-200/80",
+    tiltClass: "lg:rotate-[1.5deg]",
+    floatDelay: "0.45s",
+  },
 ];
 
 const POSITION_CLASSES: Record<TestimonialPosition, string> = {
   "top-left": "lg:absolute lg:left-[1%] lg:top-[6%] xl:left-[3%]",
-  "top-center": "lg:absolute lg:left-1/2 lg:top-[0%] lg:-translate-x-1/2",
+  "top-center": "lg:absolute lg:left-1/2 lg:top-[4%] lg:-translate-x-1/2",
   "top-right": "lg:absolute lg:right-[1%] lg:top-[8%] xl:right-[3%]",
+  "mid-left": "lg:absolute lg:left-[1%] lg:top-[36%] xl:left-[3%]",
   "bottom-left": "lg:absolute lg:bottom-[12%] lg:left-[2%] xl:left-[5%]",
   "bottom-right": "lg:absolute lg:bottom-[10%] lg:right-[2%] xl:right-[5%]",
 };

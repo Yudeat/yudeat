@@ -19,9 +19,9 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yudeat — Software Developer",
+  title: "Yudeat — Full-Stack Developer & DevOps",
   description:
-    "Building fast, clean web apps for real users. Open for freelance or full-time based in Kathmandu Valley, Nepal.",
+    "Full-stack development and DevOps — building fast, clean web apps for real users. Open for freelance or full-time based in Kathmandu Valley, Nepal.",
 };
 
 export default function RootLayout({

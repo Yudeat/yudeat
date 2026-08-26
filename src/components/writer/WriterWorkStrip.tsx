@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { type KeyboardEvent, useEffect, useRef, useState } from "react";
 import {
   WRITER_FEATURED_WORK,
   WRITER_HERO,
@@ -106,6 +106,25 @@ export function WriterWorkStrip() {
   useHorizontalDrag(desktopTrackRef, setProgress);
   useHorizontalDrag(mobileTrackRef, setProgress);
 
+  const scrollTrack = (track: HTMLElement | null, dir: number) => {
+    track?.scrollBy({ left: dir * track.clientWidth * 0.8, behavior: "smooth" });
+  };
+
+  const handleTrackKey = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    scrollTrack(event.currentTarget, event.key === "ArrowLeft" ? -1 : 1);
+  };
+
+  const nudge = (dir: number) => {
+    // offsetParent is null when the track is display:none (hidden at this breakpoint)
+    const track =
+      desktopTrackRef.current?.offsetParent != null
+        ? desktopTrackRef.current
+        : mobileTrackRef.current;
+    scrollTrack(track, dir);
+  };
+
   useEffect(() => {
     const bar = progressBarRef.current;
     if (!bar) return;
@@ -122,6 +141,25 @@ export function WriterWorkStrip() {
         <span ref={progressBarRef} className="writer-work-progress-bar" />
       </div>
 
+      <div className="writer-work-nav">
+        <button
+          type="button"
+          className="writer-work-nav-btn"
+          aria-label="Previous works"
+          onClick={() => nudge(-1)}
+        >
+          <span aria-hidden="true">←</span>
+        </button>
+        <button
+          type="button"
+          className="writer-work-nav-btn"
+          aria-label="Next works"
+          onClick={() => nudge(1)}
+        >
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+
       <div className="writer-work-mobile-hero lg:hidden" data-writer-hero>
         <WorkHeroBlock />
       </div>
@@ -129,6 +167,11 @@ export function WriterWorkStrip() {
       <div
         ref={desktopTrackRef}
         className="writer-work-strip writer-work-strip--desktop writer-rule-x hidden lg:flex"
+        role="region"
+        aria-label="Featured writing carousel"
+        aria-roledescription="carousel"
+        tabIndex={0}
+        onKeyDown={handleTrackKey}
       >
         {panels.map((pair, panelIndex) => {
           const left = pair[0];
@@ -138,7 +181,14 @@ export function WriterWorkStrip() {
             <div key={panelIndex} className="writer-work-panel">
               {left ? <WorkCard item={left} /> : <div className="writer-rule-y" />}
 
-              <div className="writer-work-center writer-rule-y" data-writer-hero>
+              <div
+                className="writer-work-center writer-rule-y"
+                data-writer-hero
+                // The hero repeats once per panel for visual rhythm; only the
+                // first is exposed so AT announces "All writing!" a single time.
+                aria-hidden={panelIndex > 0}
+                {...(panelIndex > 0 ? { tabIndex: -1 } : {})}
+              >
                 <WorkHeroBlock />
               </div>
 
@@ -155,6 +205,11 @@ export function WriterWorkStrip() {
       <div
         ref={mobileTrackRef}
         className="writer-work-strip writer-work-strip--mobile writer-rule-x lg:hidden"
+        role="region"
+        aria-label="Featured writing carousel"
+        aria-roledescription="carousel"
+        tabIndex={0}
+        onKeyDown={handleTrackKey}
       >
         {WRITER_FEATURED_WORK.map((item) => (
           <div key={item.id} className="writer-work-mobile-panel">

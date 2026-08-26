@@ -6,12 +6,6 @@ export function WriterFooter() {
     <footer className="writer-footer">
       <div className="flex flex-wrap items-center gap-3">
         <span>{WRITER_FOOTER.brand} ©</span>
-        <span className="text-[rgb(17_17_17/0.35)]" aria-hidden="true">
-          ·
-        </span>
-        <Link href="/" className="hover:opacity-60">
-          {WRITER_FOOTER.legal}
-        </Link>
       </div>
 
       <nav className="flex flex-wrap items-center gap-2" aria-label="Social links">

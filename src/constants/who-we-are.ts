@@ -31,7 +31,7 @@ export const WHO_WE_ARE_BIO = {
   name: "Yudeat",
   headline: "Building digital experiences that stick",
   lead:
-    "My name is Yudeat — designer, front-end developer, and visual storyteller. I care about typography, brutalist structure, and work that feels alive in the browser.",
+    "My name is Yudeat — designer, full-stack developer, and visual storyteller. I build and ship end-to-end with a DevOps mindset, and care about typography, brutalist structure, and work that feels alive in the browser.",
   trail: `Based in ${SITE_LOCATION}, I ship for clients worldwide and keep one foot in the mountains.`,
   readMoreLabel: "Read my story",
   readMoreHref: "/passion",
@@ -40,14 +40,14 @@ export const WHO_WE_ARE_BIO = {
 } as const;
 
 export const WHO_WE_ARE_STAT = {
-  value: "4+",
+  value: "10+",
   label: "projects shipped",
   note: "Real products for real users — design, code, and polish in one loop.",
 } as const;
 
 export const WHO_WE_ARE_CONTACT_CARD = {
   name: "Yudeat",
-  role: "designer & front-end developer",
+  role: "full-stack developer & DevOps",
   phone: SITE_PHONE_DISPLAY,
   email: SITE_CONTACT_EMAIL,
   coordinates: "27°42′ N, 85°19′ E",

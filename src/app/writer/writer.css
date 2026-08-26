@@ -215,6 +215,40 @@
   background: linear-gradient(90deg, var(--writer-accent), var(--writer-ink));
 }
 
+.writer-work-nav {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.writer-work-nav-btn {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--writer-rule);
+  border-radius: 999px;
+  background: var(--writer-paper);
+  color: var(--writer-ink);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.writer-work-nav-btn:hover {
+  background: var(--writer-ink);
+  color: var(--writer-paper);
+}
+
+.writer-work-nav-btn:focus-visible {
+  outline: 2px solid var(--writer-accent);
+  outline-offset: 2px;
+}
+
 .writer-work-strip {
   display: flex;
   overflow-x: auto;

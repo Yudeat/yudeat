@@ -17,18 +17,11 @@ import { useContactForm } from "@/hooks/use-contact-form";
 import { useFooterReveal } from "@/hooks/use-footer-reveal";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
-function FooterCreditBlock({
-  className = "",
-  hiddenFromA11y = false,
-}: {
-  className?: string;
-  hiddenFromA11y?: boolean;
-}) {
+function FooterCreditBlock({ className = "" }: { className?: string }) {
   const year = new Date().getFullYear();
   return (
     <div
       className={`font-mono text-[0.62rem] font-medium uppercase leading-relaxed tracking-[0.12em] text-brutal-fg/75 ${className}`}
-      {...(hiddenFromA11y ? { "aria-hidden": true } : {})}
     >
       <p>© 2024–{year}</p>
       <p className="mt-2 text-brutal-fg">{SITE_BRAND_NAME}</p>
@@ -186,7 +179,7 @@ export function SiteFooter() {
               FAQ
             </p>
             <h3 className="mt-5 max-w-md text-balance font-sans text-[clamp(2rem,4.6vw,4rem)] font-black uppercase leading-[0.98] tracking-tighter text-brutal-fg">
-              Answers to the questions we hear most often.
+              Answers to the questions I hear most often.
             </h3>
           </div>
 
@@ -295,7 +288,6 @@ export function SiteFooter() {
             </nav>
 
             <div className="flex min-w-0 shrink-0 flex-col items-center justify-center gap-5 px-0 py-2 text-center sm:gap-6 lg:px-4 xl:px-8">
-              <FooterCreditBlock className="text-center" hiddenFromA11y />
               <p
                 data-footer-brand
                 className="select-none text-center font-sans text-[clamp(2.75rem,12vw,7.5rem)] font-black uppercase leading-[0.82] tracking-tighter text-brutal-fg sm:text-[clamp(3rem,14vw,9rem)] lg:text-[clamp(3.25rem,12vw,10rem)]"
@@ -305,28 +297,7 @@ export function SiteFooter() {
               <FooterCreditBlock className="text-center" />
             </div>
 
-            <div className="flex flex-1 flex-col items-stretch gap-12 sm:items-end lg:min-w-0 lg:max-w-md">
-              <nav className="flex flex-col gap-3 font-mono text-[0.62rem] font-medium uppercase tracking-[0.14em] text-brutal-fg sm:items-end sm:text-right">
-                <a
-                  className="flex w-full max-w-xs items-center justify-between gap-2 border-b border-transparent pb-1 transition hover:border-brutal-fg/30 sm:ml-auto sm:justify-end sm:gap-4"
-                  href="#"
-                >
-                  <span>Terms &amp; conditions</span> <span aria-hidden>→</span>
-                </a>
-                <a
-                  className="flex w-full max-w-xs items-center justify-between gap-2 border-b border-transparent pb-1 transition hover:border-brutal-fg/30 sm:ml-auto sm:justify-end sm:gap-4"
-                  href="#"
-                >
-                  <span>Privacy policy</span> <span aria-hidden>→</span>
-                </a>
-                <a
-                  className="flex w-full max-w-xs items-center justify-between gap-2 border-b border-transparent pb-1 transition hover:border-brutal-fg/30 sm:ml-auto sm:justify-end sm:gap-4"
-                  href="#"
-                >
-                  <span>Cookies policy</span> <span aria-hidden>→</span>
-                </a>
-              </nav>
-            </div>
+            <div className="flex-1" aria-hidden />
           </div>
         </section>
       </div>

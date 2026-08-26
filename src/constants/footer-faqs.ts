@@ -17,6 +17,6 @@ export const FOOTER_FAQS = [
   {
     question: "How do we get started?",
     answer:
-      "Send a message through the form below with your goals, timeline, and budget range. I'll reply with next steps and availability.",
+      "Send a message through the form above with your goals, timeline, and budget range. I'll reply with next steps and availability.",
   },
 ] as const;

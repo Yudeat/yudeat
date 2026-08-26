@@ -123,17 +123,26 @@ export const WRITER_STATEMENT = {
   ctaLabel: "All work",
   ctaHref: "/#work",
   portraitSrc: WRITER_HAND_IMAGE.src,
-  portraitAlt: WRITER_HAND_IMAGE.alt,
+  // Decorative repeat of the handwriting texture (also shown, captioned, in the
+  // About section) — empty alt so AT doesn't announce it twice.
+  portraitAlt: "",
   featureSrc: "/hero.png",
   featureAlt: "Yudeat in the mountains",
 } as const;
 
-export const WRITER_STATS = [
+type WriterStat = {
+  label: string;
+  value: string;
+  prefix?: string;
+  suffix?: string;
+};
+
+export const WRITER_STATS: readonly WriterStat[] = [
   { label: "Poems published", value: "100", suffix: "plus" },
   { label: "Works written", value: "100", suffix: "plus" },
-  { label: "Years writing", value: "2", suffix: "nearly" },
+  { label: "Years writing", value: "2", prefix: "nearly" },
   { label: "Letters home", value: "1", suffix: "to mama" },
-] as const;
+];
 
 export const WRITER_PIXEL = {
   lineOne: "The",
@@ -152,7 +161,6 @@ export const WRITER_MARQUEE = {
 
 export const WRITER_FOOTER = {
   brand: SITE_BRAND_NAME,
-  legal: "Legal",
   social: [
     { label: "LinkedIn", href: SITE_LINKEDIN_URL },
     { label: "GitHub", href: SITE_GITHUB_URL },

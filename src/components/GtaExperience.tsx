@@ -43,19 +43,15 @@ export function GtaExperience() {
     <>
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
 
-      {showContent && (
-        <>
-          <PortfolioHero />
-          <ScrollMarquee />
-          <DockMenu />
-          <WorkWithMe />
-          <WorkSection />
-          <TestimonialsSection />
-          <BlogSection />
-        
-          <SiteFooter />
-        </>
-      )}
+      <PortfolioHero />
+      <ScrollMarquee />
+      <DockMenu />
+      <WorkWithMe />
+      <WorkSection />
+      <TestimonialsSection />
+      <BlogSection />
+
+      <SiteFooter />
     </>
   );
 }
