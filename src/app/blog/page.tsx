@@ -35,11 +35,17 @@ export default function BlogIndexPage() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-4 sm:mt-16 sm:gap-x-10 sm:gap-y-14 lg:gap-x-12">
-          {posts.map((post) => (
-            <BlogPostCard key={post.id} post={post} />
-          ))}
-        </div>
+        {posts.length > 0 ? (
+          <div className="mt-14 grid grid-cols-2 gap-4 sm:mt-16 sm:gap-x-10 sm:gap-y-14 lg:gap-x-12">
+            {posts.map((post) => (
+              <BlogPostCard key={post.id} post={post} />
+            ))}
+          </div>
+        ) : (
+          <p className="mt-14 text-center font-mono text-sm uppercase tracking-widest text-white/50">
+            No articles yet — check back soon.
+          </p>
+        )}
       </div>
     </BlogPageShell>
   );

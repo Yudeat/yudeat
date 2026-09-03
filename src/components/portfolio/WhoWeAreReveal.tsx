@@ -11,7 +11,7 @@ import {
   WHO_WE_ARE_NAV,
   WHO_WE_ARE_STAT,
 } from "@/constants/who-we-are";
-import { SITE_BRAND_NAME } from "@/constants/site";
+import { SITE_BRAND_NAME, SITE_PHONE_TEL } from "@/constants/site";
 const aboutSerif = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -118,8 +118,19 @@ export function WhoWeAreReveal({ revealRef }: WhoWeAreRevealProps) {
                 </span>
               </p>
               <ul className="mt-4 space-y-1.5 font-sans text-[0.75rem] leading-relaxed tracking-[-0.01em] text-brutal-fg/68">
-                <li>{WHO_WE_ARE_CONTACT_CARD.phone}</li>
-                <li className="break-all">{WHO_WE_ARE_CONTACT_CARD.email}</li>
+                <li>
+                  <a href={`tel:${SITE_PHONE_TEL}`} className="hover:text-brutal-fg">
+                    {WHO_WE_ARE_CONTACT_CARD.phone}
+                  </a>
+                </li>
+                <li className="break-all">
+                  <a
+                    href={`mailto:${WHO_WE_ARE_CONTACT_CARD.email}`}
+                    className="hover:text-brutal-fg"
+                  >
+                    {WHO_WE_ARE_CONTACT_CARD.email}
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

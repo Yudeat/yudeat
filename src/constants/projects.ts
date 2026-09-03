@@ -69,7 +69,7 @@ export const PROJECTS: Project[] = [
     imageAlt: "Steel Wood Nepal — industrial materials hero section",
     tags: ["SEO", "NextJS"],
     liveUrl: "https://steelwoodnepal.com",
-    githubUrl: "https://github.com/Yudeat/pratice",
+    githubUrl: "https://github.com/yudeat",
     date: "May 10, 2025",
   },
   {
@@ -82,7 +82,7 @@ export const PROJECTS: Project[] = [
       "Creative developer portfolio — red brutalist hero with GSAP motion",
     tags: ["GSAP", "Tailwind", "Next.js"],
     liveUrl: "https://predeepchy.vercel.app/",
-    githubUrl: "https://github.com/Yudeat/Portfolios",
+    githubUrl: "https://github.com/yudeat",
     date: "April 10, 2025",
   },
 ];

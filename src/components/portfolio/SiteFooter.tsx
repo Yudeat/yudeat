@@ -1,7 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { FOOTER_FAQS } from "@/constants/footer-faqs";
 import {
   SITE_BRAND_NAME,
@@ -30,16 +30,6 @@ function FooterCreditBlock({ className = "" }: { className?: string }) {
   );
 }
 
-function onNewsletterSubmit(e: FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-  const form = e.currentTarget;
-  const email = (
-    form.elements.namedItem("email") as HTMLInputElement | null
-  )?.value?.trim();
-  if (!email) return;
-  window.location.href = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent("Newsletter signup")}&body=${encodeURIComponent(`Please add this email to updates: ${email}`)}`;
-}
-
 export function SiteFooter() {
   const reducedMotion = usePrefersReducedMotion();
   const footerRef = useRef<HTMLElement>(null);
@@ -48,6 +38,24 @@ export function SiteFooter() {
     error: contactError,
     handleSubmit: handleContactSubmit,
   } = useContactForm();
+  const [newsletterStatus, setNewsletterStatus] = useState<
+    "idle" | "sent" | "error"
+  >("idle");
+
+  function onNewsletterSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const email = (
+      form.elements.namedItem("email") as HTMLInputElement | null
+    )?.value?.trim();
+    if (!email) {
+      setNewsletterStatus("error");
+      return;
+    }
+    window.location.href = `mailto:${SITE_CONTACT_EMAIL}?subject=${encodeURIComponent("Newsletter signup")}&body=${encodeURIComponent(`Please add this email to updates: ${email}`)}`;
+    setNewsletterStatus("sent");
+    form.reset();
+  }
 
   useFooterReveal({ footerRef }, reducedMotion);
 
@@ -251,6 +259,16 @@ export function SiteFooter() {
                   →
                 </button>
               </div>
+              {newsletterStatus === "sent" ? (
+                <p className="mt-3 font-mono text-xs text-brutal-fg/70" role="status">
+                  Thanks — opening your email app to confirm.
+                </p>
+              ) : null}
+              {newsletterStatus === "error" ? (
+                <p className="mt-3 font-mono text-xs text-red-800" role="alert">
+                  Enter an email address first.
+                </p>
+              ) : null}
             </form>
           </div>
         </section>
