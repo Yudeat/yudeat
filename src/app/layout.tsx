@@ -19,6 +19,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://yudeat.vercel.app"),
   title: "Yudeat — Full-Stack Developer & DevOps",
   description:
     "Full-stack development and DevOps — building fast, clean web apps for real users. Open for freelance or full-time based in Kathmandu Valley, Nepal.",
