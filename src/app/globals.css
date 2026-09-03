@@ -321,18 +321,8 @@ html.scroll-locked body {
 }
 
 @media (max-width: 639px) {
-  .identity-sidebar-rail {
-    width: 1.65rem;
-    height: 10rem;
-  }
-
-  .identity-sidebar-rail-label {
+  .identity-sidebar {
     display: none;
-  }
-
-  .identity-sidebar-stickers {
-    margin-left: -0.95rem;
-    gap: 0.45rem;
   }
 }
 
