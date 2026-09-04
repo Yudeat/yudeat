@@ -45,16 +45,26 @@ export const PASSION_INTRO = {
 };
 
 export const PASSION_PROFILE = {
-  title: "Profile Introduction",
-  statement:
-    "Born in Parbat, Nepal — in the shadow of the Annapurna range — altitude was never abstract: it was weather, light, and the shape of every horizon. Design and code came first, as craft and livelihood. The mountains kept pulling, until field walks became study, and study became a Bachelor in Mountaineering Studies. Today the two run in parallel — technical craft on one side, high-altitude discipline on the other — held together by one instinct: curiosity about what happens just outside the frame.",
-  aside: {
-    kicker: "Field Note",
-    imageSrc: "/field/IMG_6695.jpg",
-    imageAlt: "Field frame from a ridge study",
+  name: "Yudeat",
+  role: "Mountaineer & maker",
+  portrait: {
+    src: "/field/IMG_6711.jpg",
+    alt: "Mountain light on a valley walk",
+    caption: "Parbat · Annapurna region",
+  },
+  statement: [
+    "Born in Parbat, Nepal — in the shadow of the Annapurna range — altitude was never abstract: it was weather, light, and the shape of every horizon. Design and code came first, as craft and livelihood. The mountains kept pulling, until field walks became study, and study became a Bachelor in Mountaineering Studies.",
+    "Today the two run in parallel — technical craft on one side, high-altitude discipline on the other — held together by one instinct: curiosity about what happens just outside the frame.",
+  ],
+  quote: "Can the discipline of the mountains shape the craft of the screen?",
+  quoteLink: {
+    label: "Explore the field archive",
+    href: "/passion#image-field",
+  },
+  image: {
+    src: "/field/IMG_6695.jpg",
+    alt: "Field frame from a ridge study",
     caption: "Field frame — ridge study",
-    question: "Can the discipline of the mountains shape the craft of the screen?",
-    meta: "Parbat · Annapurna region",
   },
 };
 

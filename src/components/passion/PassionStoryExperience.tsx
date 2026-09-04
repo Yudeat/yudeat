@@ -1,10 +1,10 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { PassionCollectionSection } from "@/components/passion/PassionCollectionSection";
 import { PassionFieldBridge } from "@/components/passion/PassionFieldBridge";
-import { PassionFigureBlock } from "@/components/passion/PassionFigure";
 import { PassionImageField } from "@/components/passion/PassionImageField";
 import { PassionLandingHero } from "@/components/passion/PassionLandingHero";
 import { PassionProfileIntro } from "@/components/passion/PassionProfileIntro";
@@ -185,7 +185,6 @@ export function PassionStoryExperience() {
           const number = chapter.querySelector("[data-story-number]");
           const reveals = chapter.querySelectorAll("[data-story-reveal]");
           const rule = chapter.querySelector(".passion-chapter-rule");
-          const figures = chapter.querySelectorAll(".passion-figure");
 
           if (reducedMotion) {
             gsap.set([number, ...reveals], { opacity: 1, y: 0, scale: 1 });
@@ -195,20 +194,20 @@ export function PassionStoryExperience() {
 
           if (number) {
             gsap.from(number, {
-              scale: 0.82,
+              scale: 0.9,
               opacity: 0,
               duration: 1,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: chapter,
-                start: "top 82%",
+                start: "top 84%",
                 toggleActions: "play none none reverse",
               },
             });
           }
 
           gsap.from(reveals, {
-            y: 48,
+            y: 40,
             opacity: 0,
             duration: 1,
             stagger: 0.12,
@@ -227,24 +226,11 @@ export function PassionStoryExperience() {
               ease: "power3.inOut",
               scrollTrigger: {
                 trigger: chapter,
-                start: "top 80%",
+                start: "top 82%",
                 toggleActions: "play none none reverse",
               },
             });
           }
-
-          figures.forEach((figure, index) => {
-            gsap.to(figure, {
-              y: index % 2 === 0 ? -20 : 14,
-              ease: "none",
-              scrollTrigger: {
-                trigger: chapter,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1.2,
-              },
-            });
-          });
         });
 
         if (bridge && !reducedMotion) {
@@ -302,57 +288,93 @@ export function PassionStoryExperience() {
         <PassionLandingHero />
 
         <main className="relative z-10">
-          <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-10">
-            <PassionProfileIntro />
+          <section
+            className="passion-story-dark relative overflow-hidden bg-[#112322] text-[#c7d0b8]"
+            aria-label="The story — profile and chapters"
+          >
+            <div
+              className="passion-story-dark-ambient pointer-events-none absolute inset-0"
+              aria-hidden="true"
+            />
 
-            <div className="space-y-14 py-12 sm:space-y-24 sm:py-20 lg:space-y-28 lg:py-24">
-              {PASSION_CHAPTERS.map((chapter) => (
-                <section
-                  key={chapter.id}
-                  id={chapter.id}
-                  data-story-chapter
-                  className="passion-chapter grid grid-cols-1 gap-5 sm:gap-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-10"
-                  aria-labelledby={`${chapter.id}-title`}
-                >
-                  <div
-                    data-story-number
-                    className="passion-chapter-number-wrap lg:col-span-1"
-                    aria-hidden="true"
-                  >
-                    <span className="passion-chapter-number font-sans text-[clamp(2rem,8vw,4rem)] font-semibold leading-none tracking-[-0.05em] text-brutal-fg">
-                      {chapter.number}
-                    </span>
-                  </div>
+            <div className="relative mx-auto max-w-7xl px-4 sm:px-8 lg:px-10">
+              <PassionProfileIntro />
 
-                  <div className="grid gap-8 sm:gap-10 lg:col-span-11 lg:grid-cols-11 lg:gap-8">
-                    <div className="space-y-4 sm:space-y-6 lg:col-span-5">
-                      {chapter.paragraphs.map((paragraph, index) => (
-                        <p
-                          key={index}
-                          data-story-reveal
-                          id={index === 0 ? `${chapter.id}-title` : undefined}
-                          className="passion-paragraph font-sans text-[0.9375rem] leading-[1.72] tracking-[-0.015em] text-brutal-fg/88 sm:text-[1.0625rem] sm:leading-[1.78]"
-                        >
-                          {paragraph}
-                        </p>
-                      ))}
-                    </div>
+              <div className="space-y-12 pb-14 sm:space-y-16 sm:pb-20 lg:space-y-0 lg:pb-24">
+                {PASSION_CHAPTERS.map((chapter) => {
+                  const chapterImage =
+                    chapter.figures.find(
+                      (figure) =>
+                        figure.imageSrc &&
+                        figure.imageSrc !== "/field/IMG_6730.jpg",
+                    ) ?? chapter.figures.find((figure) => figure.imageSrc);
 
-                    <div className="passion-figure-grid grid grid-cols-2 gap-3 sm:gap-6 lg:col-span-6 lg:gap-8">
-                      {chapter.figures.map((figure) => (
-                        <PassionFigureBlock key={figure.id} figure={figure} />
-                      ))}
-                    </div>
-                  </div>
+                  return (
+                    <section
+                      key={chapter.id}
+                      id={chapter.id}
+                      data-story-chapter
+                      className="passion-chapter grid grid-cols-1 gap-8 py-14 sm:gap-10 sm:py-16 lg:grid-cols-12 lg:gap-12 lg:py-20"
+                      aria-labelledby={`${chapter.id}-title`}
+                    >
+                      <div className="lg:col-span-7">
+                        <div className="flex items-center gap-4" aria-hidden="true">
+                          <span
+                            data-story-number
+                            className="shrink-0 font-mono text-[10px] uppercase tracking-[0.22em] text-[#c7d0b8]/55 sm:text-[11px]"
+                          >
+                            Chapter {chapter.number}
+                          </span>
+                          <span className="passion-chapter-rule h-px flex-1 origin-left bg-[#c7d0b8]/20" />
+                        </div>
 
-                  <div
-                    className="passion-chapter-rule col-span-full mt-2 origin-left bg-gradient-to-r from-brutal-fg/22 via-brutal-fg/8 to-transparent lg:col-span-12"
-                    aria-hidden="true"
-                  />
-                </section>
-              ))}
+                        <div className="mt-7 space-y-5 sm:mt-9 sm:space-y-6">
+                          {chapter.paragraphs.map((paragraph, index) => (
+                            <p
+                              key={index}
+                              data-story-reveal
+                              id={
+                                index === 0 ? `${chapter.id}-title` : undefined
+                              }
+                              className="passion-paragraph font-sans text-[0.9375rem] leading-[1.78] tracking-[-0.015em] text-[#c7d0b8] sm:text-[1.0625rem] sm:leading-[1.8]"
+                            >
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+
+                      {chapterImage ? (
+                        <div data-story-reveal className="lg:col-span-5">
+                          <figure
+                            className="passion-figure relative h-full min-h-[17rem] overflow-hidden sm:min-h-[24rem] lg:min-h-0"
+                            data-story-figure={chapterImage.id}
+                          >
+                            <Image
+                              src={chapterImage.imageSrc ?? "/hero.png"}
+                              alt={chapterImage.imageAlt ?? ""}
+                              fill
+                              sizes="(max-width: 1024px) 92vw, 42vw"
+                              className="object-cover object-center"
+                            />
+                            <div
+                              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d1a19]/70 via-transparent to-transparent"
+                              aria-hidden="true"
+                            />
+                            <figcaption className="absolute bottom-4 left-5 font-mono text-[9px] uppercase tracking-[0.18em] text-[#efe8cf]/85 sm:text-[10px] sm:tracking-[0.2em]">
+                              {chapterImage.caption}
+                            </figcaption>
+                          </figure>
+                        </div>
+                      ) : null}
+                    </section>
+                  );
+                })}
+              </div>
             </div>
+          </section>
 
+          <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-10">
             <div className="space-y-4">
               {PASSION_COLLECTIONS.map((collection) => (
                 <PassionCollectionSection

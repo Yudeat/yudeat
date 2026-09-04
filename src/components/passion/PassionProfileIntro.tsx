@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Cormorant_Garamond } from "next/font/google";
 import { PASSION_PROFILE } from "@/constants/passion-story";
 
@@ -9,69 +10,93 @@ const passionSerif = Cormorant_Garamond({
 });
 
 export function PassionProfileIntro() {
-  const { title, statement, aside } = PASSION_PROFILE;
+  const { name, role, portrait, statement, quote, quoteLink, image } =
+    PASSION_PROFILE;
 
   return (
     <section
       data-passion-profile
-      className="passion-profile relative border-b border-brutal-fg/[0.07] py-12 sm:py-20 lg:py-28"
-      aria-labelledby="passion-profile-heading"
+      aria-label="Profile introduction"
+      className="passion-profile relative py-14 sm:py-20 lg:py-24"
     >
-      <h2
-        id="passion-profile-heading"
-        data-story-reveal
-        className="font-mono text-[10px] uppercase tracking-[0.2em] text-brutal-fg/45"
-      >
-        {title}
-      </h2>
-
-      <div className="mt-6 grid grid-cols-1 items-start gap-10 sm:mt-8 lg:mt-10 lg:grid-cols-12 lg:gap-x-8 xl:gap-x-12">
-        <p
-          data-story-reveal
-          className={`${passionSerif.className} passion-profile-statement font-medium text-[clamp(1.625rem,2.6vw,2.375rem)] leading-[1.18] tracking-[-0.02em] text-brutal-fg lg:col-span-7`}
-        >
-          {statement}
-        </p>
-
-        <aside
-          data-story-reveal
-          aria-label="Field note"
-          className="passion-profile-aside lg:col-span-4 lg:col-start-9 lg:mt-20 xl:mt-24"
-        >
-          <article className="overflow-hidden bg-[#efece4] ring-1 ring-brutal-fg/[0.07]">
-            <figure className="relative">
-              <div className="relative aspect-[16/9] overflow-hidden bg-[#e7e3d9]">
-                <Image
-                  src={aside.imageSrc}
-                  alt={aside.imageAlt}
-                  fill
-                  sizes="(max-width: 1024px) 92vw, 24rem"
-                  className="object-cover object-center"
-                />
-                <div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-black/0"
-                  aria-hidden="true"
-                />
-                <figcaption className="absolute bottom-3 right-4 font-mono text-[9px] uppercase tracking-[0.16em] text-white/90 sm:text-[10px] sm:tracking-[0.18em]">
-                  {aside.caption}
-                </figcaption>
-              </div>
-            </figure>
-
-            <div className="p-5 sm:p-7">
-              <p
-                className={`${passionSerif.className} font-medium text-[clamp(1.25rem,1.35vw,1.5rem)] leading-[1.3] tracking-[-0.015em] text-brutal-fg`}
-              >
-                {aside.question}
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+        {/* Left: identity, statement, quote, link */}
+        <div className="flex flex-col lg:col-span-7">
+          <div data-story-reveal className="flex items-center gap-4 sm:gap-5">
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full ring-1 ring-[#efe8cf]/30 sm:h-14 sm:w-14">
+              <Image
+                src={portrait.src}
+                alt={portrait.alt}
+                fill
+                sizes="56px"
+                className="object-cover object-center"
+              />
+            </div>
+            <div>
+              <p className="font-sans text-base font-semibold tracking-[-0.01em] text-[#efe8cf] sm:text-lg">
+                {name}
               </p>
-
-              <p className="mt-6 flex items-center justify-between gap-4 border-t border-brutal-fg/[0.1] pt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-brutal-fg/45 sm:text-[10px] sm:tracking-[0.18em]">
-                <span>{aside.kicker}</span>
-                <span className="text-right">{aside.meta}</span>
+              <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-[#c7d0b8]/65 sm:text-[11px]">
+                {role}
               </p>
             </div>
-          </article>
-        </aside>
+          </div>
+
+          <div className="mt-8 space-y-5 sm:mt-10 sm:space-y-6">
+            {statement.map((paragraph, index) => (
+              <p
+                key={index}
+                data-story-reveal
+                className="passion-paragraph font-sans text-[0.9375rem] leading-[1.78] tracking-[-0.015em] text-[#c7d0b8] sm:text-[1.0625rem] sm:leading-[1.8]"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          <div
+            data-story-reveal
+            className="mt-10 border-t border-[#c7d0b8]/15 pt-8 sm:mt-14 sm:pt-10 lg:mt-auto lg:pt-12"
+          >
+            <blockquote
+              className={`${passionSerif.className} font-medium text-[clamp(1.625rem,2.6vw,2.5rem)] leading-[1.18] tracking-[-0.02em] text-[#efe8cf]`}
+            >
+              &ldquo;{quote}&rdquo;
+            </blockquote>
+
+            <Link
+              href={quoteLink.href}
+              className="group mt-7 inline-flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#efe8cf]/90 transition-colors hover:text-[#efe8cf] sm:text-[11px]"
+            >
+              {quoteLink.label}
+              <span
+                className="ri-arrow-right-line text-sm leading-none transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </Link>
+          </div>
+        </div>
+
+        {/* Right: full-height photo with caption */}
+        <figure
+          data-story-reveal
+          className="relative min-h-[17rem] overflow-hidden sm:min-h-[24rem] lg:col-span-5 lg:min-h-0"
+        >
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            sizes="(max-width: 1024px) 92vw, 42vw"
+            className="object-cover object-center"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0d1a19]/70 via-transparent to-transparent"
+            aria-hidden="true"
+          />
+          <figcaption className="absolute bottom-4 left-5 font-mono text-[9px] uppercase tracking-[0.18em] text-[#efe8cf]/85 sm:text-[10px] sm:tracking-[0.2em]">
+            {image.caption}
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
