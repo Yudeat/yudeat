@@ -44,27 +44,18 @@ export const PASSION_INTRO = {
     "From Parbat to the high country — studying mountains formally while building for the web.",
 };
 
-export type PassionProfileSection = {
-  label: string;
-  body: string;
-};
-
 export const PASSION_PROFILE = {
   title: "Profile Introduction",
-  sections: [
-    {
-      label: "Origin & Roots",
-      body: "Born in Parbat, Nepal — a region defined by its proximity to the Annapurna range. This early environment fostered a foundational connection to mountain landscapes and high-altitude geography.",
-    },
-    {
-      label: "Core Evolution",
-      body: "Developed a deep sense of belonging to the mountains, transitioning from a background in technology and web development to formal, academic specialization in mountaineering.",
-    },
-    {
-      label: "Current Focus",
-      body: "Pursuing a Bachelor in Mountaineering Studies. Combining technical problem-solving skills with practical and theoretical mountain education to operate effectively in high-altitude environments.",
-    },
-  ] satisfies PassionProfileSection[],
+  statement:
+    "Born in Parbat, Nepal — in the shadow of the Annapurna range — altitude was never abstract: it was weather, light, and the shape of every horizon. Design and code came first, as craft and livelihood. The mountains kept pulling, until field walks became study, and study became a Bachelor in Mountaineering Studies. Today the two run in parallel — technical craft on one side, high-altitude discipline on the other — held together by one instinct: curiosity about what happens just outside the frame.",
+  aside: {
+    kicker: "Field Note",
+    imageSrc: "/field/IMG_6695.jpg",
+    imageAlt: "Field frame from a ridge study",
+    caption: "Field frame — ridge study",
+    question: "Can the discipline of the mountains shape the craft of the screen?",
+    meta: "Parbat · Annapurna region",
+  },
 };
 
 export const PASSION_INTRO_PHOTOS = [

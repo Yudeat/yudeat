@@ -1261,10 +1261,6 @@ html.scroll-locked body {
     width: 50%;
   }
 
-  .passion-profile-card:nth-child(3) {
-    grid-column: 1 / -1;
-  }
-
   .passion-collection-layout {
     gap: 1.25rem;
   }
@@ -1334,12 +1330,6 @@ html.scroll-locked body {
 
   .field-filter-nav {
     padding-bottom: 0.25rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .passion-profile-card:nth-child(3) {
-    grid-column: auto;
   }
 }
 
