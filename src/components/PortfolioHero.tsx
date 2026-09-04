@@ -101,15 +101,15 @@ export function PortfolioHero() {
                     ))}
                   </div>
 
-                  <div className="relative mt-5 aspect-[16/7] w-full overflow-hidden border border-brutal-border md:mt-6">
+                  <div className="relative mt-5 aspect-[3/4] w-full overflow-hidden border border-brutal-border md:mt-6">
                     <Image
                       src="/hero.png"
-                      alt="Yudeat in front of a lake and mountains"
+                      alt="Yudeat standing on a brick stairway"
                       data-webgl-image
                       fill
                       priority
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 60vw, 800px"
-                      className="hero-image object-cover object-[center_68%]"
+                      className="hero-image object-cover object-center"
                     />
                   </div>
 
