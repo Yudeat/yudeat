@@ -34,6 +34,13 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .scroll-marquee-mask {
