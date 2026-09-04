@@ -1,31 +1,18 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import dynamic from "next/dynamic";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { PassionCollectionSection } from "@/components/passion/PassionCollectionSection";
 import { PassionFieldBridge } from "@/components/passion/PassionFieldBridge";
-import { PassionImageField } from "@/components/passion/PassionImageField";
 import { PassionFigureBlock } from "@/components/passion/PassionFigure";
-import { PassionIntroHero } from "@/components/passion/PassionIntroHero";
+import { PassionImageField } from "@/components/passion/PassionImageField";
+import { PassionLandingHero } from "@/components/passion/PassionLandingHero";
 import { PassionProfileIntro } from "@/components/passion/PassionProfileIntro";
 import { PASSION_COLLECTIONS } from "@/constants/passion-collections";
-import {
-  PASSION_CHAPTERS,
-  PASSION_PAGE_NAV,
-} from "@/constants/passion-story";
+import { PASSION_CHAPTERS } from "@/constants/passion-story";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { gsap } from "@/lib/gsap";
 import { scheduleScrollTriggerRefresh } from "@/lib/scroll-trigger";
-
-const PortfolioHeader = dynamic(
-  () =>
-    import("@/components/portfolio/PortfolioHeader").then(
-      (module) => module.PortfolioHeader,
-    ),
-  { ssr: false },
-);
 
 function animateDrawPaths(svg: SVGSVGElement, reducedMotion: boolean) {
   const paths = svg.querySelectorAll<SVGGeometryElement>(".story-draw");
@@ -312,34 +299,10 @@ export function PassionStoryExperience() {
           aria-hidden="true"
         />
 
-        <PortfolioHeader />
-
-        <nav
-          className="passion-top-nav relative z-10 border-b border-brutal-fg/[0.07] px-4 py-6 sm:px-8 sm:py-8 lg:px-10"
-          aria-label="Passion story sections"
-        >
-          <ul className="passion-top-nav-grid grid grid-cols-2 gap-x-3 gap-y-5 sm:gap-6 lg:grid-cols-4 lg:gap-4 xl:grid-cols-7">
-            {PASSION_PAGE_NAV.map((item) => (
-              <li key={item.label}>
-                <Link
-                  href={item.href}
-                  className="passion-nav-link group block"
-                >
-                  <p className="passion-nav-label font-sans text-[0.8125rem] font-medium tracking-[-0.02em] text-brutal-fg transition-opacity group-hover:opacity-55 sm:text-[0.9375rem]">
-                    {item.label}
-                  </p>
-                  <p className="passion-nav-sublabel mt-0.5 font-mono text-[9px] uppercase tracking-[0.12em] text-brutal-fg/42 sm:mt-1 sm:text-[10px] sm:tracking-[0.14em]">
-                    {item.sublabel}
-                  </p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <PassionLandingHero />
 
         <main className="relative z-10">
           <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-10">
-            <PassionIntroHero />
             <PassionProfileIntro />
 
             <div className="space-y-14 py-12 sm:space-y-24 sm:py-20 lg:space-y-28 lg:py-24">
